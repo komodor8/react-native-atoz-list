@@ -231,7 +231,7 @@ export default class FixedHeightWindowedListView extends Component {
         <CellRenderer
           key={key}
           //shouldUpdate={data !== this.__rowCache[key]}
-          shouldUpdate={true}
+          shouldUpdate={data == this.__rowCache[key]}
           render={this.__renderRow.bind(this, data, parentSectionId, idx, key)}
         />
       );
