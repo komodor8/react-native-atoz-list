@@ -234,7 +234,7 @@ export default class FixedHeightWindowedListView extends Component {
           this.items = _.cloneDeep(this.props.items)
       }
       if ( this.__rowCache[key] && this.__rowCache[key].id && this.props.handleStatus) {
-          let flag = this.items.indexOf(this.__rowCache[key].id);
+          let flag = this.props.items.indexOf(this.__rowCache[key].id);
           shouldUpdate = flag == - 1 ? false : true;
       }
 
