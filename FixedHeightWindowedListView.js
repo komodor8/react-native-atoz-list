@@ -227,11 +227,21 @@ export default class FixedHeightWindowedListView extends Component {
         key = `${key}-${id}`;
       }
 
+      let shouldUpdate = false;
+      if ( this.__rowCache[key] && this.__rowCache[key].id && !this.props.handleStatus) {
+          let flag = this.props.items.indefOf(this.__rowCache[key].id);
+          shouldUpdate = flag == - 1 ? false : true;
+          this.items = _.cloneDeep(this.props.items)
+      }
+      if ( this.__rowCache[key] && this.__rowCache[key].id && this.props.handleStatus) {
+          let flag = this.props.items.indefOf(this.__rowCache[key].id);
+          shouldUpdate = flag == - 1 ? false : true;
+      }
+
       rows.push(
         <CellRenderer
           key={key}
-//           shouldUpdate={data !== this.__rowCache[key]}
-          shouldUpdate={true}
+          shouldUpdate={shouldUpdate}
           render={this.__renderRow.bind(this, data, parentSectionId, idx, key)}
         />
       );
